@@ -1,12 +1,12 @@
 # Build stage
-FROM eclipse-temurin:17-jdk-jammy AS build
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 WORKDIR /workspace
 
 # Cache Maven dependencies separately
 COPY pom.xml .
 COPY src ./src
 
-RUN ./mvnw -B -Dmaven.test.skip=true package
+RUN mvn -B -Dmaven.test.skip=true package
 
 # Runtime stage
 FROM eclipse-temurin:17-jre-jammy
