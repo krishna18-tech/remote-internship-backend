@@ -16,13 +16,22 @@ public class InternshipController {
     @Autowired
     private InternshipService service;
 
+    // GET all internships
+    @GetMapping
+    public List<Internship> getAllInternships() {
+        return service.getAllInternships();
+    }
+
+    // ADD internship
     @PostMapping
-    public Internship addInternship(@RequestBody Internship internship){
+    public Internship addInternship(@RequestBody Internship internship) {
         return service.saveInternship(internship);
     }
 
-    @GetMapping
-    public List<Internship> getInternships(){
-        return service.getAllInternships();
+    // DELETE internship
+    @DeleteMapping("/{id}")
+    public void deleteInternship(@PathVariable Long id) {
+        service.deleteInternship(id);
     }
+
 }

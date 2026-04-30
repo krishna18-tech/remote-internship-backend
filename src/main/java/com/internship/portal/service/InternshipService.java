@@ -12,13 +12,18 @@ import com.internship.portal.repository.InternshipRepository;
 public class InternshipService {
 
     @Autowired
-    private InternshipRepository repo;
-
-    public Internship saveInternship(Internship internship){
-        return repo.save(internship);
-    }
+    private InternshipRepository repository;
 
     public List<Internship> getAllInternships(){
-        return repo.findAll();
+        return repository.findAll();
     }
+
+    public Internship saveInternship(Internship internship){
+        return repository.save(internship);
+    }
+
+    public void deleteInternship(Long id){
+        repository.deleteById(id);
+    }
+
 }
